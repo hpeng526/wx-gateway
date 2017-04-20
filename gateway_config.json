@@ -1,0 +1,5 @@
+{
+  "server_address" : "127.0.0.1:8080",
+  "database": "./gateway.sqlite",
+  "mq_address": "127.0.0.1:6379"
+}

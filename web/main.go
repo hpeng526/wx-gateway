@@ -4,21 +4,28 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/hpeng526/wx-backend/mq"
+	"github.com/hpeng526/wx-gateway/common"
 	"github.com/hpeng526/wx-gateway/po"
 	"github.com/hpeng526/wx-gateway/service"
 	"github.com/hpeng526/wx/template"
 	"log"
 	"net/http"
+	"os"
 )
 
-func gateway(w http.ResponseWriter, r *http.Request) {
+const configFile = "./gateway_config.json"
+
+var configuration *common.ConfigFile
+var redisMq *mq.RedisMq
+var us *service.UserService
+
+func userGateway(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var t po.UserMessage
 	err := decoder.Decode(&t)
 	if err != nil {
 		panic(err)
 	}
-	us := service.UserService{DataSource: "./gateway.sqlite"}
 	user, err := us.FindUserById(t.UserId)
 
 	fmt.Printf("user is %s\n, err is %s\n", user, err)
@@ -32,12 +39,11 @@ func gateway(w http.ResponseWriter, r *http.Request) {
 
 	if msg.ToUser != "" {
 		// offer to mq
-		redisMq := mq.NewRedisMq("127.0.0.1:6379")
 		jsonData, err := json.Marshal(msg)
 		if err != nil {
 			fmt.Printf("err %v", err)
 		}
-		redisMq.Offer("testmq", string(jsonData))
+		go redisMq.Offer("testmq", string(jsonData))
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
@@ -47,9 +53,22 @@ func gateway(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func init() {
+	file, err := os.Open(configFile)
+	decoder := json.NewDecoder(file)
+	configuration = &common.ConfigFile{}
+	err = decoder.Decode(&configuration)
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+	fmt.Println(configuration)
+	redisMq = mq.NewRedisMq(configuration.MqAddress)
+	us = &service.UserService{DataSource: configuration.Database}
+}
+
 func main() {
-	http.HandleFunc("/u", gateway)           //设置访问的路由
-	err := http.ListenAndServe(":8080", nil) //设置监听的端口
+	http.HandleFunc("/u", userGateway)
+	err := http.ListenAndServe(configuration.ServerAddress, nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
