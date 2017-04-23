@@ -2,7 +2,6 @@ language: go
 
 go:
     - 1.7.x
-    - master
 
 before_install:
     - go get github.com/hpeng526/wx-backend/mq
