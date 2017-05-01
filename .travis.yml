@@ -3,10 +3,5 @@ language: go
 go:
     - 1.7.x
 
-before_install:
-    - go get github.com/hpeng526/wx-backend/mq
-    - go get github.com/hpeng526/wx/template
-    - go get github.com/mattn/go-sqlite3
-
 install:
     - make
