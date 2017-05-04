@@ -2,6 +2,9 @@
 	"ImportPath": "github.com/hpeng526/wx-gateway",
 	"GoVersion": "go1.8",
 	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/garyburd/redigo/internal",
@@ -14,8 +17,12 @@
 			"Rev": "48545177e92ae3e7bcdbd50b42f7a139e6a268da"
 		},
 		{
-			"ImportPath": "github.com/hpeng526/wx-backend/mq",
-			"Rev": "ba08b9f67400b0dadb2d8cfc064660b038099c41"
+			"ImportPath": "github.com/hpeng526/wx/cache",
+			"Rev": "fdebba500a31524ba9036917545b6cecab0ee6a5"
+		},
+		{
+			"ImportPath": "github.com/hpeng526/wx/context",
+			"Rev": "fdebba500a31524ba9036917545b6cecab0ee6a5"
 		},
 		{
 			"ImportPath": "github.com/hpeng526/wx/template",
@@ -23,12 +30,12 @@
 		},
 		{
 			"ImportPath": "github.com/mattn/go-sqlite3",
-			"Comment": "v1.2.0-24-g6f8cd03",
-			"Rev": "6f8cd03789727d57d2c5906a1c2990f5ab50f8e1"
+			"Comment": "v1.2.0-80-gcf7286f",
+			"Rev": "cf7286f069c3ef596efcc87781a4653a2e7607bd"
 		},
 		{
 			"ImportPath": "golang.org/x/net/context",
-			"Rev": "236b8f043b920452504e263bc21d354427127473"
+			"Rev": "feeb485667d1fdabe727840fe00adc22431bc86e"
 		}
 	]
 }
