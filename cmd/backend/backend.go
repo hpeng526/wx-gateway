@@ -23,7 +23,7 @@ func init() {
 	}
 	log.Println(configuration)
 	wxServer = NewRedisMqServer(configuration.AppId, configuration.AppSecret, configuration.MqAddress)
-	timeSec = time.Duration(configuration.delay) * time.Second
+	timeSec = time.Duration(configuration.Delay) * time.Second
 }
 
 func main() {
