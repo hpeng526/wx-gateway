@@ -5,7 +5,7 @@ api-gateway
 [![Go Report Card](https://goreportcard.com/badge/github.com/hpeng526/wx-gateway)](https://goreportcard.com/report/github.com/hpeng526/wx-gateway)
 ### Dependency
 
-- hpeng526/wx-backend
-- hpeng526/wx
-
+- github.com/hpeng526/wx
+- github.com/garyburd/redigo
+- github.com/mattn/go-sqlite3
 

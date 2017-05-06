@@ -2,8 +2,8 @@ package mq
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/hpeng526/wx/template"
+	"log"
 	"testing"
 )
 
@@ -16,9 +16,9 @@ func TestTmpData(t *testing.T) {
 
 	jsonData, err := json.Marshal(msg)
 	if err != nil {
-		fmt.Printf("err %v", err)
+		log.Printf("err %v", err)
 	}
-	fmt.Printf("tmp is : %v \n", string(jsonData))
+	log.Printf("tmp is : %v \n", string(jsonData))
 
 	//redisMq := NewRedisMq("127.0.0.1:6379")
 	//redisMq.Offer("testmq", string(jsonData))

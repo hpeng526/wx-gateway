@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"os"
 	"time"
 )
@@ -19,9 +19,9 @@ func init() {
 	configuration = &ConfigFile{}
 	err = decoder.Decode(&configuration)
 	if err != nil {
-		fmt.Println("error:", err)
+		log.Println("error:", err)
 	}
-	fmt.Println(configuration)
+	log.Println(configuration)
 	wxServer = NewRedisMqServer(configuration.AppId, configuration.AppSecret, configuration.MqAddress)
 	timeSec = time.Duration(configuration.delay) * time.Second
 }

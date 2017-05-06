@@ -12,7 +12,6 @@ type User struct {
 	CreateTime time.Time
 }
 
-// post data
 type UserMessage struct {
 	UserId int64           `json:"user_id"`
 	URL    string          `json:"url,omitempty"`
@@ -21,5 +20,6 @@ type UserMessage struct {
 
 type HttpResp struct {
 	Success  bool   `json:"success"`
+	Msg      string `json:"msg,omitempty"`
 	UserWxId string `json:"user_wx_id,omitempty"`
 }

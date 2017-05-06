@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/hpeng526/wx-gateway/mq"
 	"github.com/hpeng526/wx-gateway/po"
 	"github.com/hpeng526/wx-gateway/service"
@@ -23,26 +22,30 @@ func userGateway(w http.ResponseWriter, r *http.Request) {
 	var t po.UserMessage
 	err := decoder.Decode(&t)
 	if err != nil {
-		panic(err)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		resp := po.HttpResp{Success: false, Msg: "error param"}
+		jsonResp, _ := json.Marshal(resp)
+		w.Write(jsonResp)
+		return
 	}
 	user, err := us.FindUserById(t.UserId)
-
-	fmt.Printf("user is %s\n, err is %s\n", user, err)
+	log.Printf("user is %v\n, err is %v\n", user, err)
 	msg := template.TemplateMessage{
 		ToUser:     user.UserWXId,
 		TemplateID: user.TemplateId,
 		URL:        t.URL,
 		JSONData:   t.Data,
 	}
-	fmt.Printf("msg is %s", msg)
+	log.Printf("msg is %v", msg)
 
 	if msg.ToUser != "" {
 		// offer to mq
 		jsonData, err := json.Marshal(msg)
 		if err != nil {
-			fmt.Printf("err %v", err)
+			log.Printf("err %v", err)
 		}
-		go redisMq.Offer("testmq", string(jsonData))
+		go redisMq.Offer(configuration.Key, string(jsonData))
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
@@ -58,9 +61,9 @@ func init() {
 	configuration = &ConfigFile{}
 	err = decoder.Decode(&configuration)
 	if err != nil {
-		fmt.Println("error:", err)
+		log.Println("error:", err)
 	}
-	fmt.Println(configuration)
+	log.Println(configuration)
 	redisMq = mq.NewRedisMq(configuration.MqAddress)
 	us = &service.UserService{DataSource: configuration.Database}
 }

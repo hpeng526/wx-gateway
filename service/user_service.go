@@ -2,7 +2,6 @@ package service
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/hpeng526/wx-gateway/po"
 	_ "github.com/mattn/go-sqlite3"
 	"log"
@@ -79,7 +78,7 @@ func (service *UserService) InsertUser(u *po.User) int64 {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("user is %v\n", u)
+	log.Printf("user is %v\n", u)
 
 	res, err := sqlStmt.Exec(u.UserId, u.UserWXId, u.TemplateId, u.CreateTime)
 	if err != nil {
@@ -89,7 +88,7 @@ func (service *UserService) InsertUser(u *po.User) int64 {
 	tx.Commit()
 
 	affect, err := res.RowsAffected()
-	fmt.Println("row affect %d", affect)
+	log.Println("row affect %d", affect)
 	return affect
 }
 

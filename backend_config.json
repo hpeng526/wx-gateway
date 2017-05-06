@@ -1,0 +1,7 @@
+{
+  "app_id": "appid",
+  "app_secret": "sr",
+  "mq_address": "127.0.0.1:6379",
+  "key": "gateway",
+  "delay": 10
+}
