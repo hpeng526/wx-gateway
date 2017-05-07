@@ -40,8 +40,7 @@ func userGateway(w http.ResponseWriter, r *http.Request) {
 	log.Printf("msg is %v", msg)
 
 	if msg.ToUser != "" {
-		// offer to mq
-		jsonData, err := json.Marshal(msg)
+		jsonData, err := json.Marshal(&msg)
 		if err != nil {
 			log.Printf("err %v", err)
 		}
