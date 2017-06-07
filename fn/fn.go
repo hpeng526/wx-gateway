@@ -3,7 +3,7 @@ package fn
 import "reflect"
 
 /**
- * high class func map
+ * higher-order function map
  */
 func Map(xs interface{}, f interface{}) interface{} {
 	vf := reflect.ValueOf(f)
