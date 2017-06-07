@@ -26,7 +26,7 @@ func (ms *MqServer) HandleMessage(msg string) {
 		var tmd template.TemplateMessage
 		json.Unmarshal([]byte(msg), &tmd)
 		log.Printf("tmd is %v\n", tmd)
-		tj, _ := json.Marshal(tmd)
+		tj, _ := json.Marshal(&tmd)
 		log.Printf("tj is %s\n", tj)
 		token, err := ms.Ctx.GetAccessToken()
 		if err != nil {

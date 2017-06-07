@@ -59,6 +59,32 @@ func (service *UserService) FindUserById(id int64) (*po.User, error) {
 
 }
 
+func (service *UserService) FindUsersByGroup(groupId int64) ([]po.User, error) {
+	db, err := sql.Open("sqlite3", service.DataSource)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+	query := "SELECT u.id, u.wx_id, u.template_id, u.create_time from T_USER_GROUP ug LEFT JOIN T_USER u ON ug.user_id = u.id WHERE ug.id = ?"
+
+	rows, err := db.Query(query, groupId)
+
+	var users []po.User
+	for rows.Next() {
+		var id int64
+		var wxId string
+		var tempId string
+		var createTime time.Time
+		err = rows.Scan(&id, &wxId, &tempId, &createTime)
+		if err != nil {
+			return nil, err
+		}
+		user := po.User{id, wxId, tempId, createTime}
+		users = append(users, user)
+	}
+	return users, err
+}
+
 func (service *UserService) InsertUser(u *po.User) int64 {
 	db, err := sql.Open("sqlite3", service.DataSource)
 	if err != nil {

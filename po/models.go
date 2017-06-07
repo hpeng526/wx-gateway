@@ -12,10 +12,10 @@ type User struct {
 	CreateTime time.Time
 }
 
-type UserMessage struct {
-	UserId int64           `json:"user_id"`
-	URL    string          `json:"url,omitempty"`
-	Data   json.RawMessage `json:"data"`
+type MsgParam struct {
+	Id   int64           `json:"id"`
+	URL  string          `json:"url,omitempty"`
+	Data json.RawMessage `json:"data"`
 }
 
 type HttpResp struct {
