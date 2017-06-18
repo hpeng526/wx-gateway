@@ -18,36 +18,36 @@ It is a interface using [WeChat template message api]('https://mp.weixin.qq.com/
 0. [wechat-sandbox](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login) set up your sandbox (or just using an account with template message interface) record <b>appID appsecret</b>
 0. add a new template and record its <b>template id</b>
 
-    ```
-    {{first.DATA}} from：{{send.DATA}} 内容：{{text.DATA}} 时间：{{time.DATA}} {{remark.DATA}}
-    ```
-    
+```
+{{first.DATA}} from：{{send.DATA}} 内容：{{text.DATA}} 时间：{{time.DATA}} {{remark.DATA}}
+```
+
 0. set up redis-server
 0. run wx-backend
     0. create a file name <b>backend_config.json</b> (mq_address is your redis ip and port) and run <b>wx-backend_linux_amd64</b>
-    
-        ```
-        {
-        "app_id": "your appID",
-        "app_secret": "your appsecret",
-        "mq_address": "127.0.0.1:6379",
-        "key": "gateway",
-        "delay": 10
-        }
-        ```
-        
+
+    ```json
+    {
+    "app_id": "your appID",
+    "app_secret": "your appsecret",
+    "mq_address": "127.0.0.1:6379",
+    "key": "gateway",
+    "delay": 10
+    }
+    ```
+
 0. run wx-gateway
     0. create a file name <b>backend_config.json</b> (server_address is your server ip and port, mq_address is your redis ip and port) and run <b>wx-gateway_linux_amd64</b>
-    
-        ```
-        {
-        "server_address" : "ip:port",
-        "database": "./gateway.sqlite",
-        "mq_address": "127.0.0.1:6379",
-        "key": "gateway"
-        }
-        ```
-        
+
+    ```json
+    {
+    "server_address" : "ip:port",
+    "database": "./gateway.sqlite",
+    "mq_address": "127.0.0.1:6379",
+    "key": "gateway"
+    }
+    ```
+
     0. set up gateway.sqlite with table.sql and add your users (no initialization
  and user interface to add users, maybe later)
 0. you can use nohup or screen to run this apps
