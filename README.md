@@ -24,25 +24,25 @@ It is a interface using [WeChat template message api]('https://mp.weixin.qq.com/
 0. run wx-backend
     0. create a file name <b>backend_config.json</b> and add
         ```json
-        {
-          "app_id": "your appID",
-          "app_secret": "your appsecret",
-          "mq_address": "127.0.0.1:6379",
-          "key": "gateway",
-          "delay": 10
-        }
+            {
+              "app_id": "your appID",
+              "app_secret": "your appsecret",
+              "mq_address": "127.0.0.1:6379",
+              "key": "gateway",
+              "delay": 10
+            }
         ```
         mq_address is your redis ip and port
     0. just run <b>wx-backend_linux_amd64</b>
 0. run wx-gateway
     0. create a file name <b>backend_config.json</b> and add
         ```json
-        {
-          "server_address" : "ip:port",
-          "database": "./gateway.sqlite",
-          "mq_address": "127.0.0.1:6379",
-          "key": "gateway"
-        }
+            {
+              "server_address" : "ip:port",
+              "database": "./gateway.sqlite",
+              "mq_address": "127.0.0.1:6379",
+              "key": "gateway"
+            }
         ```
         server_address is your server ip and port
         mq_address is your redis ip and port
@@ -60,4 +60,4 @@ run `make` or `make gateway` `make backend` to build specify app
 To build other platform's gateway, you must set up your own cross C compiler for linux (because of github.com/mattn/go-sqlite3)
 
 ## Some Client Sample
-[gateway-client](https://github.com/hpeng526/gateway-client)
+- [gateway-client](https://github.com/hpeng526/gateway-client)
