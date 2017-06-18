@@ -23,7 +23,7 @@ It is a interface using [WeChat template message api]('https://mp.weixin.qq.com/
 0. set up redis-server
 0. run wx-backend
     0. create a file name <b>backend_config.json</b> and add
-        ```json
+        ```
             {
               "app_id": "your appID",
               "app_secret": "your appsecret",
@@ -36,7 +36,7 @@ It is a interface using [WeChat template message api]('https://mp.weixin.qq.com/
     0. just run <b>wx-backend_linux_amd64</b>
 0. run wx-gateway
     0. create a file name <b>backend_config.json</b> and add
-        ```json
+        ```
             {
               "server_address" : "ip:port",
               "database": "./gateway.sqlite",
