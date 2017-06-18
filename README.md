@@ -15,16 +15,16 @@ It is a interface using [WeChat template message api]('https://mp.weixin.qq.com/
 
 ## How to use ?
 
-0. [wechat-sandbox](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login) set up your sandbox (or just using an account with template message interface) record <b>appID appsecret</b>
-0. add a new template and record its <b>template id</b>
+1. [wechat-sandbox](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login) set up your sandbox (or just using an account with template message interface) record <b>appID appsecret</b>
+2. add a new template and record its <b>template id</b>
 
 ```
 {{first.DATA}} from：{{send.DATA}} 内容：{{text.DATA}} 时间：{{time.DATA}} {{remark.DATA}}
 ```
 
-0. set up redis-server
-0. run wx-backend
-    0. create a file name <b>backend_config.json</b> (mq_address is your redis ip and port) and run <b>wx-backend_linux_amd64</b>
+3. set up redis-server
+4. run wx-backend
+    1. create a file name <b>backend_config.json</b> (mq_address is your redis ip and port) and run <b>wx-backend_linux_amd64</b>
 
     ```json
     {
@@ -36,8 +36,8 @@ It is a interface using [WeChat template message api]('https://mp.weixin.qq.com/
     }
     ```
 
-0. run wx-gateway
-    0. create a file name <b>backend_config.json</b> (server_address is your server ip and port, mq_address is your redis ip and port) and run <b>wx-gateway_linux_amd64</b>
+5. run wx-gateway
+    1. create a file name <b>backend_config.json</b> (server_address is your server ip and port, mq_address is your redis ip and port) and run <b>wx-gateway_linux_amd64</b>
 
     ```json
     {
@@ -48,9 +48,9 @@ It is a interface using [WeChat template message api]('https://mp.weixin.qq.com/
     }
     ```
 
-    0. set up gateway.sqlite with table.sql and add your users (no initialization
+    2. set up gateway.sqlite with table.sql and add your users (no initialization
  and user interface to add users, maybe later)
-0. you can use nohup or screen to run this apps
+6. you can use nohup or screen to run this apps
 
 ## How to build
 
