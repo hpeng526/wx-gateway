@@ -18,15 +18,15 @@
 		},
 		{
 			"ImportPath": "github.com/hpeng526/wx/cache",
-			"Rev": "fdebba500a31524ba9036917545b6cecab0ee6a5"
+			"Rev": "5152d04fa193039f5dbc474930be3b5d475b845d"
 		},
 		{
 			"ImportPath": "github.com/hpeng526/wx/context",
-			"Rev": "fdebba500a31524ba9036917545b6cecab0ee6a5"
+			"Rev": "5152d04fa193039f5dbc474930be3b5d475b845d"
 		},
 		{
 			"ImportPath": "github.com/hpeng526/wx/template",
-			"Rev": "fdebba500a31524ba9036917545b6cecab0ee6a5"
+			"Rev": "5152d04fa193039f5dbc474930be3b5d475b845d"
 		},
 		{
 			"ImportPath": "github.com/mattn/go-sqlite3",

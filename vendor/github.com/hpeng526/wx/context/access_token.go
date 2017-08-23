@@ -38,6 +38,9 @@ func (ctx *Context) GetAccessTokenFromServer() (token RespAccessToken, err error
 	url := fmt.Sprintf("%s?grant_type=client_credential&appid=%s&secret=%s", AccessTokenURL, ctx.AppID, ctx.AppSecret)
 	resp, err := http.Get(url)
 	defer resp.Body.Close()
+	if err != nil {
+		return
+	}
 	body, _ := ioutil.ReadAll(resp.Body)
 	err = json.Unmarshal(body, &token)
 	if err != nil {
